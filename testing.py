@@ -1,4 +1,5 @@
- import requests
+import requests
+from main.py import user_topic
 
 
 from kivy.app import App
@@ -42,7 +43,7 @@ class TextInputApp(App):
 
     def on_submit(self, instance, touch):
         # Send a GET request to the Flask API to retrieve movie data
-        response = requests.get('http://127.0.0.1:5000/api/movies/'+self.text_input.text)
+        response = requests.get(f'http://127.0.0.1:5000/api/{user_topic}/'+self.text_input.text)
 
 # Check the response status code
         global d_ata
