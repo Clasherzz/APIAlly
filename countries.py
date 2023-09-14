@@ -81,13 +81,14 @@ countries_data = {
 # Define an endpoint to retrieve all data
 @app.route('/api/countries', methods=['GET'])
 def get_all_data():
-    return jsonify(data)
+    return jsonify(countries_data)
 
 # Define an endpoint to retrieve data by ID
 @app.route('/api/data/<string:id>', methods=['GET'])
-def get_data_by_id(id):
-    if id in data:
-        return jsonify(data[id])
+def get_data_by_id(name):
+    country=countries_data.get(name)
+    if country:
+        return jsonify(country)
     else:
         return jsonify({'message': 'Data not found'}), 404
 
