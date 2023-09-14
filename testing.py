@@ -1,52 +1,4 @@
-
-# from flask import Flask, jsonify, request
-#
-# # Create a Flask app
-# app = Flask(__name__)
-#
-# # Sample movie data (in-memory database)
-# movies_data = {
-#     'Movie A': {
-#         'title': 'Movie A',
-#         'release_year': 2020,
-#         'director': 'Director A',
-#         'genre': 'Action',
-#     },
-#     'Movie B': {
-#         'title': 'Movie B',
-#         'release_year': 2018,
-#         'director': 'Director B',
-#         'genre': 'Comedy',
-#     },
-#     'Movie C': {
-#         'title': 'Movie C',
-#         'release_year': 2019,
-#         'director': 'Director C',
-#         'genre': 'Drama',
-#     },
-#     # Add more movie data as needed
-# }
-#
-# # Define an endpoint to retrieve all movie data
-# @app.route('/api/movies', methods=['GET'])
-# def get_all_movies():
-#     return jsonify(movies_data)
-#
-# # Define an endpoint to retrieve movie data by title
-# @app.route('/api/movies/<string:title>', methods=['GET'])
-# def get_movie_by_title(title):
-#     movie = movies_data.get(title)
-#     if movie:
-#         return jsonify(movie)
-#     else:
-#         return jsonify({'message': 'Movie not found'}), 404
-#
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-# User input for the movie title
-
-import requests
+ import requests
 
 
 from kivy.app import App
@@ -55,7 +7,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.core.window import Window
 inputp='STRING'
-movie_data=None
+d_ata=None
 temp=None
 class TextInputApp(App):
 
@@ -93,12 +45,12 @@ class TextInputApp(App):
         response = requests.get('http://127.0.0.1:5000/api/movies/'+self.text_input.text)
 
 # Check the response status code
-        global movie_data
+        global d_ata
         if response.status_code == 200:
 
-             movie_data = response.json()
+             d_ata = response.json()
              print("Movie Data:")
-             print(movie_data)
+             print(d_ata)
         elif response.status_code == 404:
              print("Movie not found.")
         else:
@@ -106,7 +58,5 @@ class TextInputApp(App):
 
         if self.text_input.text:
             input_text = self.text_input.text
-            self.display_label.text = f'You entered: {movie_data}'
-
-if __name__ == '__main__':
-    TextInputApp().run()
+            self.display_label.text = f'You entered: {d_ata}'
+TextInputApp().run()
