@@ -82,13 +82,14 @@ plants_data = {
 # Define an endpoint to retrieve all data
 @app.route('/api/plants', methods=['GET'])
 def get_all_data():
-    return jsonify(data)
+    return jsonify(plants_data)
 
 # Define an endpoint to retrieve data by ID
 @app.route('/api/data/<string:id>', methods=['GET'])
-def get_data_by_id(id):
-    if id in data:
-        return jsonify(data[id])
+def get_data_by_id(name):
+    plant=plants_data.get(name)
+    if plant:
+        return jsonify(plant)
     else:
         return jsonify({'message': 'Data not found'}), 404
 
